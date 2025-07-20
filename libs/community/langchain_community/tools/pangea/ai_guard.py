@@ -99,8 +99,16 @@ class PangeaAIGuard(PangeaBaseTool):
         if not guarded.result:
             raise PangeaAIGuardError("Result is invalid or missing")
 
-        if guarded.result.redacted_prompt:
-            input_text = guarded.result.redacted_prompt
+        if guarded.result.prompt_text:
+            input_text = guarded.result.prompt_text
+
+        if guarded.result.prompt_text:
+            input_text = guarded.result.prompt_text
+
+        if guarded.result.prompt_messages:
+            input_text = guarded.result.prompt_messages
+
+        return input_text
 
         return guarded.result.model_dump_json()
         # return json.dumps(guarded.result.model_dump())
